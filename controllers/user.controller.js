@@ -35,16 +35,6 @@ userController.register = catchAsync(async (req, res, next) => {
   });
   const accessToken = await user.generateToken();
 
-  const emailData = await emailHelper.renderEmailTemplate(
-    "welcome_email",
-    { name: name },
-    email
-  );
-
-  if (!emailData.error) {
-    emailHelper.send(emailData);
-  }
-
   return sendResponse(
     res,
     200,

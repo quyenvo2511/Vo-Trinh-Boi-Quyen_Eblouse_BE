@@ -153,7 +153,8 @@ clinicController.getBookingListUser = catchAsync(async (req, res, next) => {
     $or: [{ user: currentUser }, { clinic: currentUser }],
   })
     .populate("doctor")
-    .populate("user");
+    .populate("user")
+    .populate({ path: "clinic", populate: { path: "specializations" } });
 
   return sendResponse(res, 200, true, bookingRelate, null, null);
 });
