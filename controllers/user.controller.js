@@ -119,4 +119,19 @@ userController.createNewBooking = catchAsync(async (req, res, next) => {
   return sendResponse(res, 200, true, null, null, "Request has been sent");
 });
 
+userController.editProfile = catchAsync(async (req, res, next) => {
+  const userId = req.userId;
+  const { gender, blood, passportNum, job } = req.body;
+  const profile = await User.findOneAndUpdate(
+    { _id: userId },
+    { gender, blood, passportNum, job },
+    { new: true }
+  );
+  if (!profile)
+    return next(
+      new AppError(400, "profile not found", "update information error")
+    );
+  return sendResponse(res, 200, true, profile, null, "update profile success");
+});
+
 module.exports = userController;

@@ -29,5 +29,11 @@ router.get("/", authentication.loginRequired, userController.getUsers);
  * @access Public
  */
 router.post("/", userController.register);
+/**
+ * @route PUT api/users/information/:id
+ * @description Register new account
+ * @access Public
+ */
+router.put("/information/:id", userController.editProfile);
 
 module.exports = router;
