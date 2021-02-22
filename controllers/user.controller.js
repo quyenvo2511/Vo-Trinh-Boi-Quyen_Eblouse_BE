@@ -124,7 +124,7 @@ userController.editProfile = catchAsync(async (req, res, next) => {
   const { gender, blood, passportNum, job } = req.body;
   const profile = await User.findOneAndUpdate(
     { _id: userId },
-    { gender, blood, passportNum, job },
+    { name, gender, blood, passportNum, job },
     { new: true }
   );
   if (!profile)
