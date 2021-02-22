@@ -121,7 +121,7 @@ userController.createNewBooking = catchAsync(async (req, res, next) => {
 
 userController.editProfile = catchAsync(async (req, res, next) => {
   const userId = req.userId;
-  const { gender, blood, passportNum, job } = req.body;
+  const { name, gender, blood, passportNum, job } = req.body;
   const profile = await User.findOneAndUpdate(
     { _id: userId },
     { name, gender, blood, passportNum, job },
